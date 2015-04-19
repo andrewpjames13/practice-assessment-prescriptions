@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1> Add a subscription to <%= @patient.first_name %> <%= @patient.last_name %></h1>
+</div>
+
+<%= form_for [@patient, @prescription] do |f| %>
+  <%= f.label :medication_id %>
+  <%= f.collection_select :medication_id, Medication.all, :id, :name %>
+
+  <%= f.label :dosage %>
+  <%= f.text_field :dosage %>
+
+  <%= f.label :schedule %>
+  <%= f.text_field :schedule %>
+
+  <%= f.label :starts %>
+  <%= f.date_field :starts %>
+
+  <%= f.label :ends %>
+  <%= f.date_field :ends %>
+
+  <%= f.submit %>
+<% end %>
