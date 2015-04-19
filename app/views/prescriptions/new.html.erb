@@ -2,6 +2,20 @@
   <h1> Add a subscription to <%= @patient.first_name %> <%= @patient.last_name %></h1>
 </div>
 
+
+<% if @prescription.errors.any? %>
+<div id="error_explanation", class="alert alert-danger">
+
+  <h2><%= pluralize(@prescription.errors.count, "error") %> prohibited this from being saved:</h2>
+
+  <ul>
+    <% @prescription.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
 <%= form_for [@patient, @prescription] do |f| %>
   <%= f.label :medication_id %>
   <%= f.collection_select :medication_id, Medication.all, :id, :name %>

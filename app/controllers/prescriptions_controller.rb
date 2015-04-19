@@ -11,14 +11,17 @@ class PrescriptionsController < ApplicationController
     @medication = Medication.find_by(params[:medication_id])
     @prescription = @patient.prescriptions.new(prescription_params)
     if @prescription.save
+      flash[:success] =  "Your prescription has been created"
       redirect_to patient_path(@patient)
+    else
+      render :new
     end
   end
 
   private
 
   def prescription_params
-    params.require(:prescription).permit(:medication_id, :dosage, :schedule, :starts, :ends)
+    params.require(:prescription).permit(:patient_id, :medication_id, :dosage, :schedule, :starts, :ends)
   end
 
 end
