@@ -1,0 +1,25 @@
+<div class="page-header">
+  <h1> <%= @patient.first_name %> <%= @patient.last_name %></h1>
+</div>
+
+<div class="page-header">
+  <h2>Prescriptions</h2>
+</div>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Medication</th>
+      <th>Dosage / Schedule</th>
+      <th>Dates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @prescriptions.each do |p| %>
+      <tr>
+        <td><%= link_to p.medication.name, medication_path(p) %></td>
+        <td> <%= p.dosage %> <%= p.schedule %></td>
+        <td> <%= p.starts %> <%= p.ends %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
